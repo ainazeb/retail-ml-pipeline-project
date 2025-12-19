@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+snowflake-connector-python
+pandas
+numpy
+pydantic
+python-dotenv
+scikit-learn
+statsmodels
