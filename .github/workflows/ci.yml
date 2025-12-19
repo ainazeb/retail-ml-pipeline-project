@@ -8,16 +8,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-check:
+  test-and-build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Get code
-      - name: Checkout repository
+      # 1) Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       # 2) Setup Python
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
@@ -28,12 +28,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 4) Basic import check (fails fast if app has syntax/import errors)
+      # 4) Quick import check (fails fast if app cannot start)
       - name: Import check
         run: |
-          python -c "import app.main; print('app.main import OK')"
+          python -c "from app.main import app; print('FastAPI app import OK')"
 
-      # 5) Docker build (validates Dockerfile)
+      # 5) Build Docker image (CI check)
       - name: Build Docker image
         run: |
           docker build -t retail-api:ci .
