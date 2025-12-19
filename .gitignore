@@ -5,3 +5,10 @@ __pycache__/
 .ipynb_checkpoints/
 .env
 .DS_Store
+data_raw/
+data_processed/
+data_features/
+models/
+*.csv
+*.parquet
+*.pkl
